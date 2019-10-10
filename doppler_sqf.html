@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <title>Doppler SQF Generator</title>
+            
+            <script type="text/JavaScript">
+                function showMessage(){
+                    
+                    var satName = document.getElementById("satelliteName").value;
+                    
+                    var downlink = document.getElementById("downlinkFreq").value;
+                    var prettyDownlink = downlink.replace(/\./g,'');
+
+                    var uplink = document.getElementById("uplinkFreq").value;
+                    var prettyUplink = uplink.replace(/\./g,'');
+
+                    var downMode = document.getElementById("downlinkMode");
+                    var downModeText = downMode.options[downMode.selectedIndex].text;
+                    
+                    var upMode = document.getElementById("uplinkMode");
+                    var upModeText = downMode.options[upMode.selectedIndex].text;
+                    
+                    var transponderType = document.getElementById("transponderType");
+                    var transponderTypeText = transponderType.options[transponderType.selectedIndex].text;
+                    
+                    var xvertDown = document.getElementById("transDown").value;
+                    var prettyXDown = xvertDown.replace(/\./g,'');
+
+                    var xvertUp = document.getElementById("transUp").value;
+                    var prettyXUp = xvertUp.replace(/\./g,'');
+
+                    var message = satName;
+                    message += ",";
+                    message += prettyDownlink;
+                    message += ",";
+                    message += prettyUplink;
+                    message += ",";
+                    message += downModeText;
+                    message += ",";
+                    message += upModeText;
+                    message += ",";
+                    message += transponderTypeText;
+                    message += ",";
+                    message += prettyXDown;
+                    message += ",";
+                    message += prettyXUp;
+                    message += ",";
+                    message += document.getElementById("commentText").value;
+                    display_message.innerHTML= message;
+                }
+            </script>
+            
+            <link rel="stylesheet" type="text/css" href="view.css" media="all">
+                <script type="text/javascript" src="view.js"></script>
+                
+    </head>
+    <body id="main_body" >
+        
+        <img id="top" src="top.png" alt="">
+            <div id="form_container">
+                
+                <h1><a>Doppler SQF Generator</a></h1>
+                <form id="sqf_form" class="appnitro"  method="" action="">
+                    <div class="form_description">
+                        <h2>Doppler SQF Generator</h2>
+                        <p>Create new Doppler.sqf file lines  </p>
+                    </div>
+                    <ul >
+                        
+                        <li id="li_1" >
+                            <label class="description" for="satelliteName">Satellite Name </label>
+                            <div>
+                                <input id="satelliteName" name="satelliteName" class="element text medium" type="text" maxlength="255" value=""/>
+                            </div>
+                        </li>        <li id="li_2" >
+                            <label class="description" for="downlinkFreq">Downlink Frequency (kHz) </label>
+                            <div>
+                                <input id="downlinkFreq" name="downlinkFreq" class="element text medium" type="text" maxlength="255" value=""/>
+                            </div>
+                        </li>
+                        <li id="li_3" >
+                            <label class="description" for="uplinkFreq">Uplink Frequency (kHz) </label>
+                            <div>
+                                <input id="uplinkFreq" name="uplinkFreq" class="element text medium" type="text" maxlength="255" value=""/>
+                            </div>
+                        </li>
+                        <li id="li_5" >
+                            <label class="description" for="downlinkMode">Downlink Mode </label>
+                            <div>
+                                <select class="element select medium" id="downlinkMode" name="downlinkMode">
+                                    <option value="" selected="selected"></option>
+                                    <option value="1" >USB</option>
+                                    <option value="2" >LSB</option>
+                                    <option value="3" >CW</option>
+                                    <option value="4" >FM</option>
+                                    <option value="5" >PKT</option>
+                                    
+                                </select>
+                            </div>
+                        </li>        <li id="li_6" >
+                            <label class="description" for="uplinkMode">Uplink Mode </label>
+                            <div>
+                                <select class="element select medium" id="uplinkMode" name="uplinkMode">
+                                    <option value="" selected="selected"></option>
+                                    <option value="1" >USB</option>
+                                    <option value="2" >LSB</option>
+                                    <option value="3" >CW</option>
+                                    <option value="4" >FM</option>
+                                    <option value="5" >PKT</option>
+                                    
+                                </select>
+                            </div>
+                        </li>        <li id="li_7" >
+                            <label class="description" for="transponderType">Transponder Type </label>
+                            <div>
+                                <select class="element select medium" id="transponderType" name="transponderType">
+                                    <option value="" selected="selected"></option>
+                                    <option value="1" >NOR</option>
+                                    <option value="2" >REV</option>
+                                    
+                                </select>
+                            </div>
+                        </li>
+                        
+                        
+                        <li id="li_8" >
+                            <label class="description" for="transDown">Downlink Transverter Offset (kHz) </label>
+                            <div>
+                                <input id="transDown" name="transDown" class="element text medium" type="text" maxlength="255" value="0"/>
+                            </div>
+                        </li>
+                        
+                        <li id="li_9" >
+                            <label class="description" for="transUp">Uplink Transverter Offset (kHz) </label>
+                            <div>
+                                <input id="transUp" name="transUp" class="element text medium" type="text" maxlength="255" value="0"/>
+                            </div>
+                        </li>
+
+                        
+                        <li id="li_4" >
+                            <label class="description" for="commentText">Comment
+                            </label>
+                            <div>
+                                <input id="commentText" name="commentText" class="element text medium" type="text" maxlength="255" value=""/>
+                            </div>
+                        </li>
+                        
+                        <li class="buttons">
+                            
+                            <input id="saveForm" class="button_text" type="button" onclick="showMessage()" name="submit" value="Submit" />
+                        </li>
+                        
+                        <p> New SQF Line: <span id = "display_message"></span> </p>
+                        
+                    </ul>
+                </form>
+                <div id="footer">
+                    
+                </div>
+            </div>
+            <img id="bottom" src="bottom.png" alt="">
+                </body>
+</html>
